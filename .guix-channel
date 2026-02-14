@@ -1,0 +1,30 @@
+;; ═══════════════════════════════════════════════════════════════════════════════
+;;  DISCRITIC'S GUIX CHANNEL
+;;  Personal package definitions for software not in official Guix
+;;
+;;  This channel provides:
+;;    - CLI tools (charmbracelet, etc.)
+;;    - Missing utilities
+;;    - Custom configurations
+;;
+;;  Usage:
+;;    1. Add this channel to ~/.config/guix/channels.scm
+;;    2. Run: guix pull
+;;    3. Packages become available: guix install glow atuin etc.
+;;
+;;  To update packages:
+;;    1. Edit the package definitions
+;;    2. Run: guix pull (picks up local changes)
+;;
+;;  Structure:
+;;    discritic-channel/
+;;    ├── .guix-channel          <- This file (channel metadata)
+;;    └── discritic/
+;;        └── packages/
+;;            ├── cli-tools.scm  <- CLI tool packages
+;;            └── fonts.scm      <- Font packages (if needed)
+;; ═══════════════════════════════════════════════════════════════════════════════
+
+(channel
+ (version 0)
+ (directory "discritic"))
