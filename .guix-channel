@@ -1,16 +1,17 @@
 ;; ═══════════════════════════════════════════════════════════════════════════════
 ;;  DISCRITIC'S GUIX CHANNEL
-;;  Personal package definitions for software not in official Guix
+;;  Personal package and service definitions for software not in official Guix
 ;;
 ;;  This channel provides:
 ;;    - CLI tools (charmbracelet, etc.)
-;;    - Missing utilities
-;;    - Custom configurations
+;;    - Wayland utilities (wluma, etc.)
+;;    - Display managers (ly)
+;;    - Shepherd service definitions for the above
 ;;
 ;;  Usage:
 ;;    1. Add this channel to ~/.config/guix/channels.scm
 ;;    2. Run: guix pull
-;;    3. Packages become available: guix install glow atuin etc.
+;;    3. Packages become available: guix install glow atuin ly etc.
 ;;
 ;;  To update packages:
 ;;    1. Edit the package definitions
@@ -18,11 +19,15 @@
 ;;
 ;;  Structure:
 ;;    parauix/
-;;    ├── .guix-channel          <- This file (channel metadata)
-;;    └── packages/
-;;        ├── cli-tools.scm      <- CLI tool packages
-;;        ├── fonts.scm          <- Font packages
-;;        └── wayland-tools.scm  <- Wayland utility packages
+;;    ├── .guix-channel              <- This file (channel metadata)
+;;    ├── packages/
+;;    │   ├── cli-tools.scm          <- CLI tool packages
+;;    │   ├── display-managers.scm   <- Display manager packages (ly)
+;;    │   ├── fonts.scm              <- Font references
+;;    │   ├── nonfree.scm            <- Nonguix package references
+;;    │   └── wayland-tools.scm      <- Wayland utility packages
+;;    └── services/
+;;        └── display-managers.scm   <- Shepherd services (ly)
 ;; ═══════════════════════════════════════════════════════════════════════════════
 
 (channel
