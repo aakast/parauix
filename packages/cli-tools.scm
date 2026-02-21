@@ -77,6 +77,34 @@ It supports multiple providers and can be used in pipelines.")
     (license license:expat)))
 
 ;;; ═══════════════════════════════════════════════════════════════════════════════
+;;; CHEATSHEETS & REFERENCE
+;;; ═══════════════════════════════════════════════════════════════════════════════
+
+(define-public navi
+  (package
+    (name "navi")
+    (version "2.24.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "https://github.com/denisidoro/navi/releases/download/v"
+             version "/navi-v" version "-x86_64-unknown-linux-musl.tar.gz"))
+       (sha256
+        (base32 "1fi1r7l6ggrwwr7d1pvl3ajriiyw2klg94fh925pq7r4g5s08d7k"))))
+    (build-system copy-build-system)
+    (arguments
+     '(#:install-plan '(("navi" "bin/"))))
+    (home-page "https://github.com/denisidoro/navi")
+    (synopsis "Interactive cheatsheet tool for the command-line")
+    (description
+     "Navi is an interactive cheatsheet tool for the command-line.  It allows
+you to browse through cheatsheets and execute commands, with the ability to
+use shell widgets for interactive selection.  Supports community-driven
+cheatsheet repositories.")
+    (license license:asl2.0)))
+
+;;; ═══════════════════════════════════════════════════════════════════════════════
 ;;; SHELL & HISTORY
 ;;; ═══════════════════════════════════════════════════════════════════════════════
 
@@ -530,6 +558,62 @@ and more.  Statically linked (musl).")
 and notes.  It provides a fast, keyboard-driven way to browse, search,
 and organize Obsidian markdown notes without launching the full Obsidian
 application.")
+    (license license:expat)))
+
+;;; ═══════════════════════════════════════════════════════════════════════════════
+;;; BLUETOOTH
+;;; ═══════════════════════════════════════════════════════════════════════════════
+
+(define-public bluetuith
+  (package
+    (name "bluetuith")
+    (version "0.2.6")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "https://github.com/bluetuith-org/bluetuith/releases/download/v"
+             version "/bluetuith_" version "_Linux_x86_64.tar.gz"))
+       (sha256
+        (base32 "05r7lvpqlxib591zf74i29xg0gpdc7wqip07k7issin42qfp61pj"))))
+    (build-system copy-build-system)
+    (arguments
+     '(#:install-plan '(("bluetuith" "bin/"))))
+    (home-page "https://github.com/bluetuith-org/bluetuith")
+    (synopsis "TUI-based Bluetooth connection manager")
+    (description
+     "Bluetuith is a TUI-based Bluetooth connection manager that can interact
+with Bluetooth adapters and devices.  It supports pairing, connecting,
+file transfer (OBEX), network access, and audio device management
+directly from the terminal.")
+    (license license:expat)))
+
+;;; ═══════════════════════════════════════════════════════════════════════════════
+;;; DOCUMENT VIEWERS
+;;; ═══════════════════════════════════════════════════════════════════════════════
+
+(define-public doxx
+  (package
+    (name "doxx")
+    (version "0.1.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "https://github.com/bgreenwell/doxx/releases/download/v"
+             version "/doxx-linux-x86_64.tar.gz"))
+       (sha256
+        (base32 "045jvkfqbyfcsira1qh7sahf1m9g2wgvs02ncqcb4q11kxagqzff"))))
+    (build-system copy-build-system)
+    (arguments
+     '(#:install-plan '(("doxx" "bin/"))))
+    (home-page "https://github.com/bgreenwell/doxx")
+    (synopsis "Terminal-native .docx document viewer")
+    (description
+     "Doxx is a fast, terminal-native document viewer for Word files.  It
+supports viewing, searching, and exporting @code{.docx} documents with rich
+formatting, tables, equations, and images without leaving the command line.
+Export to Markdown, CSV, JSON, plain text, or ANSI-colored output.")
     (license license:expat)))
 
 ;;; ═══════════════════════════════════════════════════════════════════════════════

@@ -17,14 +17,13 @@
 ;;    2. Run: guix pull (picks up local changes)
 ;;
 ;;  Structure:
-;;    discritic-channel/
+;;    parauix/
 ;;    ├── .guix-channel          <- This file (channel metadata)
-;;    └── discritic/
-;;        └── packages/
-;;            ├── cli-tools.scm  <- CLI tool packages
-;;            └── fonts.scm      <- Font packages (if needed)
+;;    └── packages/
+;;        ├── cli-tools.scm      <- CLI tool packages
+;;        ├── fonts.scm          <- Font packages
+;;        └── wayland-tools.scm  <- Wayland utility packages
 ;; ═══════════════════════════════════════════════════════════════════════════════
 
 (channel
- (version 0)
- (directory "discritic"))
+ (version 0))
