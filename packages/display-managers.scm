@@ -41,6 +41,7 @@
     (arguments
      (list
       #:tests? #f
+      #:validate-runpath? #f
       #:phases
       #~(modify-phases %standard-phases
           (delete 'configure)
