@@ -63,7 +63,7 @@
                         "-Dinit_system=none"
                         (string-append "-Dprefix=" out))))))))
     (native-inputs
-     (list git pkg-config zig zstd))
+     (list git pkg-config zig-0.15 zstd))
     (inputs (list libxcb linux-pam))
     (home-page "https://codeberg.org/fairyglade/ly")
     (synopsis "TUI display manager")
