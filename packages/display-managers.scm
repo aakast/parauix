@@ -52,15 +52,13 @@
             (lambda _
               (invoke "zig" "build"
                       "-Doptimize=ReleaseSafe"
-                      "-Denable_x11_support=true"
-                      "-Dinit_system=none")))
+                      "-Denable_x11_support=true")))
           (replace 'install
             (lambda* (#:key outputs #:allow-other-keys)
               (let ((out (assoc-ref outputs "out")))
                 (invoke "zig" "build" "install"
                         "-Doptimize=ReleaseSafe"
                         "-Denable_x11_support=true"
-                        "-Dinit_system=none"
                         (string-append "-Dprefix=" out))))))))
     (native-inputs
      (list git pkg-config zig-0.15 zstd))
