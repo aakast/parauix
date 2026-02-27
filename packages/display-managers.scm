@@ -59,7 +59,7 @@
                 (invoke "zig" "build" "install"
                         "-Doptimize=ReleaseSafe"
                         "-Denable_x11_support=true"
-                        (string-append "--prefix=" out))))))))
+                        "-p" out)))))))
     (native-inputs
      (list git pkg-config zig-0.15 zstd))
     (inputs (list libxcb linux-pam))
