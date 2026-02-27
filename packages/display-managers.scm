@@ -45,8 +45,8 @@
       #~(modify-phases %standard-phases
           (delete 'configure)
           (add-after 'unpack 'unpack-vendor
-            (lambda* (#:key native-inputs #:allow-other-keys)
-              (invoke "tar" "--zstd" "-xf" (assoc-ref native-inputs "vendor"))
+            (lambda _
+              (invoke "tar" "--zstd" "-xf" #$ly-vendor-source)
               (setenv "ZIG_GLOBAL_CACHE_DIR" (string-append (getcwd) "/vendor"))))
           (replace 'build
             (lambda _
@@ -63,11 +63,7 @@
                         "-Dinit_system=none"
                         (string-append "-Dprefix=" out))))))))
     (native-inputs
-     (list `("git" ,git)
-           `("pkg-config" ,pkg-config)
-           `("zig" ,zig)
-           `("zstd" ,zstd)
-           `("vendor" ,ly-vendor-source)))
+     (list git pkg-config zig zstd))
     (inputs (list libxcb linux-pam))
     (home-page "https://codeberg.org/fairyglade/ly")
     (synopsis "TUI display manager")
