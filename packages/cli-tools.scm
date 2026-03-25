@@ -76,6 +76,45 @@ to bring out the beauty—and power—of the CLI.")
 It supports multiple providers and can be used in pipelines.")
     (license license:expat)))
 
+(define-public opencode
+  (package
+    (name "opencode")
+    (version "0.0.55")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "https://github.com/opencode-ai/opencode/releases/download/v"
+             version "/opencode-linux-x86_64.tar.gz"))
+       (sha256
+        (base32 "09c0r7aa9vwgfpmpq43v19nqrkp96k9ic8iyiz2aw83r7qh427vz"))))
+    (build-system copy-build-system)
+    (arguments
+     `(#:install-plan '(("opencode" "bin/"))
+       #:phases
+       (modify-phases %standard-phases
+         (add-after 'install 'patch-binary
+           (lambda* (#:key inputs outputs #:allow-other-keys)
+             (use-modules (guix build utils))
+             (let* ((out (assoc-ref outputs "out"))
+                    (bin (string-append out "/bin/opencode"))
+                    (patchelf (string-append (assoc-ref inputs "patchelf") "/bin/patchelf"))
+                    (libc (assoc-ref inputs "glibc"))
+                    (gcc-lib (assoc-ref inputs "gcc-toolchain"))
+                    (ld-so (string-append libc "/lib/ld-linux-x86-64.so.2"))
+                    (rpath (string-append gcc-lib "/lib:" libc "/lib")))
+               (invoke patchelf "--set-interpreter" ld-so bin)
+               (invoke patchelf "--set-rpath" rpath bin)))))))
+    (native-inputs (list patchelf))
+    (inputs (list glibc gcc-toolchain))
+    (supported-systems '("x86_64-linux"))
+    (home-page "https://github.com/opencode-ai/opencode")
+    (synopsis "AI coding agent for terminal workflows")
+    (description
+     "OpenCode is a terminal-based AI coding assistant focused on local
+development workflows.")
+    (license license:expat)))
+
 ;;; ═══════════════════════════════════════════════════════════════════════════════
 ;;; CHEATSHEETS & REFERENCE
 ;;; ═══════════════════════════════════════════════════════════════════════════════
