@@ -393,12 +393,13 @@ and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and
        (method url-fetch)
        (uri (string-append
              "https://github.com/pimalaya/himalaya/releases/download/v"
-             version "/himalaya-x86_64-linux.tar.gz"))
+             version "/himalaya.x86_64-linux.tgz"))
        (sha256
-        (base32 "1da9pfwbz6r6rkigh5ljn0phq7iw4p9awr5258ww2qrdng2dy680"))))
+        (base32 "1lrwp3j3v21a08wrcq838ycdak1arlsy954c6z7yy16nkvsjjnlg"))))
     (build-system copy-build-system)
     (arguments
-     '(#:install-plan '(("himalaya" "bin/"))))
+     '(#:install-plan '(("himalaya" "bin/")
+                        ("share/" "share/"))))
     (home-page "https://pimalaya.org/himalaya/")
     (synopsis "CLI to manage emails")
     (description
