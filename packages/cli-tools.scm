@@ -398,8 +398,15 @@ and BINARY formats and encrypts with AWS KMS, GCP KMS, Azure Key Vault, age, and
         (base32 "1lrwp3j3v21a08wrcq838ycdak1arlsy954c6z7yy16nkvsjjnlg"))))
     (build-system copy-build-system)
     (arguments
-     '(#:install-plan '(("himalaya" "bin/")
-                        ("share/" "share/"))))
+     '(#:install-plan '(("himalaya" "bin/"))
+       #:phases
+       (modify-phases %standard-phases
+         (replace 'unpack
+           (lambda* (#:key source #:allow-other-keys)
+             (invoke "tar" "-xzf" source)))
+         (add-after 'unpack 'make-tree-writable
+           (lambda _
+             (for-each make-file-writable (find-files ".")))))))
     (home-page "https://pimalaya.org/himalaya/")
     (synopsis "CLI to manage emails")
     (description
