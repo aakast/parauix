@@ -91,10 +91,10 @@ It supports multiple providers and can be used in pipelines.")
     (build-system copy-build-system)
     (arguments
      `(#:install-plan '(("opencode" "bin/"))
-       #:phases
-       (modify-phases %standard-phases
-         (add-after 'install 'patch-binary
-           (lambda* (#:key inputs outputs #:allow-other-keys)
+        #:phases
+        (modify-phases %standard-phases
+          (add-after 'install 'patch-binary
+            (lambda* (#:key inputs outputs #:allow-other-keys)
              (use-modules (guix build utils))
              (let* ((out (assoc-ref outputs "out"))
                     (bin (string-append out "/bin/opencode"))
@@ -102,9 +102,14 @@ It supports multiple providers and can be used in pipelines.")
                     (libc (assoc-ref inputs "glibc"))
                     (gcc-lib (assoc-ref inputs "gcc-toolchain"))
                     (ld-so (string-append libc "/lib/ld-linux-x86-64.so.2"))
-                    (rpath (string-append gcc-lib "/lib:" libc "/lib")))
-               (invoke patchelf "--set-interpreter" ld-so bin)
-               (invoke patchelf "--set-rpath" rpath bin)))))))
+                     (rpath (string-append gcc-lib "/lib:" libc "/lib")))
+                (invoke patchelf "--set-interpreter" ld-so bin)
+                (invoke patchelf "--set-rpath" rpath bin))))
+          (add-after 'patch-binary 'smoke-test
+            (lambda* (#:key outputs #:allow-other-keys)
+              (let ((bin (string-append (assoc-ref outputs "out") "/bin/opencode")))
+                (invoke bin "--version"))))
+          (delete 'validate-runpath))))
     (native-inputs (list patchelf))
     (inputs (list glibc gcc-toolchain))
     (supported-systems '("x86_64-linux"))
