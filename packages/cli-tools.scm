@@ -86,8 +86,8 @@ It supports multiple providers and can be used in pipelines.")
        (uri (string-append
              "https://github.com/anomalyco/opencode/releases/download/v"
              version "/opencode-linux-x64.tar.gz"))
-       (sha256
-        (base32 "14mv6sqnxlfzn239gz9bgn7ps2gxzjxcspjvysk7yk8mg9zm6fqk"))))
+        (sha256
+         (base32 "04rvadzpl5adgykgcnsyrnxgrz89gn7psazxjy3b1pyidsqkdfwj"))))
     (build-system copy-build-system)
     (arguments
      '(#:install-plan '(("opencode" "bin/"))))
