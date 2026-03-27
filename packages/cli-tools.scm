@@ -79,20 +79,20 @@ It supports multiple providers and can be used in pipelines.")
 (define-public opencode
   (package
     (name "opencode")
-    (version "0.0.55")
+    (version "1.3.3")
     (source
      (origin
        (method url-fetch)
        (uri (string-append
-             "https://github.com/opencode-ai/opencode/releases/download/v"
-             version "/opencode-linux-x86_64.tar.gz"))
+             "https://github.com/anomalyco/opencode/releases/download/v"
+             version "/opencode-linux-x64.tar.gz"))
        (sha256
-        (base32 "09c0r7aa9vwgfpmpq43v19nqrkp96k9ic8iyiz2aw83r7qh427vz"))))
+        (base32 "14mv6sqnxlfzn239gz9bgn7ps2gxzjxcspjvysk7yk8mg9zm6fqk"))))
     (build-system copy-build-system)
     (arguments
      '(#:install-plan '(("opencode" "bin/"))))
     (supported-systems '("x86_64-linux"))
-    (home-page "https://github.com/opencode-ai/opencode")
+    (home-page "https://github.com/anomalyco/opencode")
     (synopsis "AI coding agent for terminal workflows")
     (description
      "OpenCode is a terminal-based AI coding assistant focused on local
