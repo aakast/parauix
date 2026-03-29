@@ -79,15 +79,15 @@ It supports multiple providers and can be used in pipelines.")
 (define-public opencode
   (package
     (name "opencode")
-    (version "1.3.3")
+    (version "1.3.5")
     (source
      (origin
        (method url-fetch)
         (uri (string-append
               "https://github.com/anomalyco/opencode/releases/download/v"
               version "/opencode-linux-x64-baseline.tar.gz"))
-         (sha256
-          (base32 "05fmjx8j1h3mxfy3h5lnx0pb266i7z09ampnp4xvylcy21m10392"))))
+          (sha256
+          (base32 "04npwzvxhqhzzbcc6977hgdakz8md406sy4xm2av58bw56xxsbhb"))))
     (build-system copy-build-system)
     (arguments
      `(#:install-plan '(("opencode" "bin/"))
@@ -112,9 +112,27 @@ It supports multiple providers and can be used in pipelines.")
     (home-page "https://github.com/anomalyco/opencode")
     (synopsis "AI coding agent for terminal workflows")
     (description
-     "OpenCode is a terminal-based AI coding assistant focused on local
+      "OpenCode is a terminal-based AI coding assistant focused on local
 development workflows.")
     (license license:expat)))
+
+(define-public opencode-avx2
+  (package
+    (inherit opencode)
+    (name "opencode-avx2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "https://github.com/anomalyco/opencode/releases/download/v"
+             (package-version opencode) "/opencode-linux-x64.tar.gz"))
+       (sha256
+        (base32 "10lqzpbn5yzsckz021kb6r6qxg46alfh6i91k0rjqrg0bbhrmd66"))))
+    (synopsis "AI coding agent for terminal workflows (AVX2)")
+    (description
+     "OpenCode is a terminal-based AI coding assistant focused on local
+development workflows.  This variant uses the AVX2-optimized x86_64 binary and
+requires CPUs with AVX2 support.")))
 
 ;;; ═══════════════════════════════════════════════════════════════════════════════
 ;;; CHEATSHEETS & REFERENCE
